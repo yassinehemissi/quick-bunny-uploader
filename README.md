@@ -7,10 +7,35 @@ local Express API. Not production stuff — just a handy personal utility.
 ## What's inside
 
 ```
-run.py                  starts the API, then the UI; stops both when the UI closes
-api/server.js           Express API — streams each file to Bunny Storage
-api/config.example.json copy to api/config.json and fill in your Bunny credentials
-ui/app.py               tkinter UI — folder picker, remote dir, file types, upload log
+run.py                     starts the API, then the UI; stops both when the UI closes
+
+api/
+  server.js                entry point — creates the app, listens on localhost only
+  src/app.js               middleware + routers
+  src/config.js            Bunny credentials + port (api/config.json or env vars)
+  src/bunny.js             Bunny Storage helpers (path sanitizing, streamed PUT)
+  src/format.js            log formatting helpers
+  src/routes/health.js     GET  /health — readiness probe
+  src/routes/upload.js     POST /upload — streams one local file to Bunny Storage
+  config.example.json      copy to api/config.json and fill in your Bunny credentials
+
+ui/
+  app.py                   composition root — wires components to services
+  constants.py             shared constants (API URL, file type groups, …)
+  utils.py                 small shared helpers
+  components/               one self-contained widget per module
+    folder_picker.py       folder row: path entry + Browse…
+    remote_dir_input.py    remote directory name row
+    type_selector.py       file type checkboxes + custom extensions
+    actions_bar.py         Rescan / Upload / Stop + scan summary
+    progress.py            upload progress bar
+    file_list.py           matched files listbox
+    log_panel.py           colored log
+    status_bar.py          current operation + API status
+  services/
+    api_client.py          HTTP client for the Express API
+    scanner.py             top-level folder scanner
+    uploader.py            background worker — uploads one file at a time
 ```
 
 ## One-time setup
