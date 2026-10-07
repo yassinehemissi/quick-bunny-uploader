@@ -1,0 +1,4 @@
+node_modules/
+api/config.json
+__pycache__/
+*.pyc

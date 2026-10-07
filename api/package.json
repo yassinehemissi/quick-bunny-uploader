@@ -1,0 +1,13 @@
+{
+  "name": "quick-bunny-uploader-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tiny local Express API: uploads files one by one to Bunny CDN Storage.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

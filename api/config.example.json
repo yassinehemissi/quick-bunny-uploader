@@ -1,0 +1,6 @@
+{
+  "storageZone": "your-storage-zone-name",
+  "accessKey": "your-bunny-storage-access-key",
+  "publicHost": "yourzone.b-cdn.net",
+  "port": 3999
+}
